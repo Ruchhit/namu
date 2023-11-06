@@ -39,3 +39,33 @@ import ReactDOM from 'react-dom';
 // );
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<Heading2/>);
+
+// food ordering app
+
+const Header = ()=>{
+    return(
+        <div className='header'>
+            <div className='log'>
+                <img className='img'src='https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png'/>
+            </div>
+            <div className='nav-items'>
+                <ul>
+                    <li>home</li>
+                    <li>about us</li>
+                    <li>cart</li>
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+
+
+const AppLayout = ()=>{
+    return (
+        <Header/>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<AppLayout/>)
