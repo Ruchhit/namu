@@ -6,6 +6,9 @@
 .img{
     width:120px;
  }
+ .nav-items{
+    font-size: 22px;
+ }
  .nav-items>ul{
     display: flex;
     padding:0px 20px;
@@ -13,5 +16,33 @@
  }
  .nav-items>ul>li{
     padding: 10px;
+ }
+ 
+ /* body css */
+.card-img{
+    padding:4px;
+    width: 190px;;
+    height:110px;
+}
+ .search{
+    padding:10px;
+ }
+ .res-container{
+ border: 1px solid black;
+ height:600px;
+ padding:20px;
+ }
+ .card{
+    height:250px;
+    width:200px;
+    border:1px solid black;
+    margin:2px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    background-color: rgb(209, 202, 202);
+ }
+ .card:hover{
+    cursor: pointer;
+    border: 2px solid black;
  }
  

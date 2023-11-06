@@ -58,12 +58,42 @@ const Header = ()=>{
         </div>
     )
 }
+const CardContainer = ()=>{
+    return(
+     <div className='card'>
+        <div>
+            <img className='card-img'src="https://b.zmtcdn.com/data/pictures/chains/1/19461231/eac5d48527700f6ea1bcfbb2094456d0.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*"></img>
+        </div>
+        <h2>Ryan's Kitchen</h2>
+        <h4>Indian,chinese,italian</h4>
+        <h4>Rating - 4.3 *</h4>
+     </div>
+    )
+};
+
+
+const Body =()=>{
+    return(
+        <div className='body'>
+            <div className='search'>
+                search
+            </div>
+            <div className='res-container'>
+                <CardContainer/>
+            </div> 
+        </div>
+    )
+}
 
 
 
 const AppLayout = ()=>{
     return (
-        <Header/>
+        <div className='app'>
+              <Header/>
+              <Body/>
+        </div>
+       
     )
 }
 
