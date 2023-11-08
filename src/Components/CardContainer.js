@@ -5,7 +5,8 @@ const CardContainer = (props) => {
 
   return (
     <div className='eee'>
-      {resData.slice(0, 5).map((res, index) => (
+      {
+        resData.slice(0, 5).map((res, index) => (
         <div key={index} className='card'>
           <div>
             <img
@@ -18,7 +19,8 @@ const CardContainer = (props) => {
           <h4>{res.info.cuisines.join(", ")}</h4>
           <h4>Rating - {res.info.avgRating}</h4>
         </div>
-      ))}
+      ))
+      }
     </div>
   );
 };

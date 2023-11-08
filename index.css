@@ -46,6 +46,7 @@
     padding-left: 5px;
     padding-bottom: 4px;
     background-color: rgb(209, 202, 202);
+    border-right: groove;
  }
  .card:hover{
     cursor: pointer;
@@ -65,3 +66,11 @@
  .btn:hover{
     cursor: pointer;
  }
+ .footer{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    height: 100px;
+    width:100%;
+    margin-top: 10px;
+    }
