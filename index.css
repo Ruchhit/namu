@@ -80,3 +80,33 @@
     width:100%;
     margin-top: 10px;
     }
+.shimmer-container{
+    display: flex;
+    flex-wrap:wrap ;
+}
+.shimcard{
+    height:335px;
+    width:200px;
+    border:1px solid rgb(133, 115, 115);
+    margin:7px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    background-color: rgb(209, 202, 202);
+    border-right: groove;
+}
+.filtercard{
+    width: 115.2px;
+    height: 35.2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 1px;
+    background-color: rgb(209, 202, 202);
+    border:1px solid rgb(133, 115, 115);
+}
+.shimcard-container{
+    border: 1px solid #000;
+    flex-wrap: wrap;
+    height: 900px;
+    padding: 20px;
+    display: flex;
+}
