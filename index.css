@@ -110,3 +110,9 @@
     padding: 20px;
     display: flex;
 }
+.filter{
+    display: flex;
+}
+.search-btn{
+    margin-left: 10px;
+}
