@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import objData from "../utils/mockData";
 import CardContainer from "./CardContainer";
+import { SWIGGY_API } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([{
@@ -58,6 +59,16 @@ const Body = () => {
       "avgRatingString": "4.2",
     }
   }]);
+
+  useEffect(()=>{
+    fetchData();
+  },[]);
+
+  const fetchData= async()=> {
+   const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+   const json = await data.json();
+   setlistOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  }
 
   return (
     <div className="body">

@@ -3,6 +3,10 @@
  justify-content: space-between;
  border: 1px solid black;
  }
+ .body{
+    height:1000px;
+    width: 100%;
+ }
 .img{
     width:120px;
  }
@@ -33,13 +37,13 @@
  }
  .res-container{
  border: 1px solid black;
- height:600px;
+ height:900px;
  padding:20px;
  display: flex;
  flex-wrap: wrap;
  }
  .card{
-    height:260px;
+    height:335px;
     width:200px;
     border:1px solid black;
     margin:7px;
@@ -54,8 +58,10 @@
  }
  
  .eee{
-    display: flex;
- }
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Adjust the number as needed */
+    gap: 10px; /* Adjust as needed */
+  }
  .btn{
     width: 115.2px;
     height: 35.2px;

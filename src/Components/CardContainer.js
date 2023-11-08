@@ -6,7 +6,7 @@ const CardContainer = (props) => {
   return (
     <div className='eee'>
       {
-        resData.slice(0, 5).map((res, index) => (
+        resData.slice(0, 15).map((res, index) => (
         <div key={index} className='card'>
           <div>
             <img
