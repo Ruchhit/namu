@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
+  const[filteredRestaurant , setFilteredRestaurant] = useState([]);
   const [searchText,setsearchText] = useState("");
 
   useEffect(()=>{
@@ -16,6 +17,7 @@ const Body = () => {
    const data = await fetch(SWIGGY_API);
    const json = await data.json();
    setlistOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+   setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
  if(listOfRestaurants.length === 0)
  {
@@ -41,18 +43,16 @@ const Body = () => {
                 setsearchText(e.target.value);
             }}/>
             <button className="search-btn" onClick={()=>{
-                console.log(searchText);
                 const filteredRes = listOfRestaurants.filter((res)=>
                     res.info.name.toLowerCase().includes(searchText.toLowerCase())
                 )
-                setlistOfRestaurants(filteredRes);
-                console.log(listOfRestaurants)
+                setFilteredRestaurant(filteredRes);
             }}>search</button>
         </div>
       </div>
       <div className="res-container">
         {/* Assuming CardContainer accepts the list of restaurants as props */}
-        <CardContainer resData={listOfRestaurants} />
+        <CardContainer resData={filteredRestaurant} />
       </div>
     </div>
   );
