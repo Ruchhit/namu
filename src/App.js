@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 import Footer from "./Components/Footer";
+import { Error } from "./Components/Error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
@@ -23,6 +24,7 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout/>,
+    errorElement: <Error/>
   },
   {
     path: "/about",
