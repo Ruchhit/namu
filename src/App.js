@@ -7,7 +7,7 @@ import { Error } from "./Components/Error";
 import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
-import { Children } from "react/cjs/react.production.min";
+import RestaurantMenu from "./Components/RestaurantMenu";
 
 // food ordering app
 
@@ -38,6 +38,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>,
+      },
+      {
+        path : "/restaurants/:resId",
+        element : <RestaurantMenu/>,
       },
     ],
   }
