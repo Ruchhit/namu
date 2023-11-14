@@ -3,6 +3,7 @@ import objData from "../utils/mockData";
 import CardContainer from "./CardContainer";
 import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
