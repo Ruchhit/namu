@@ -1,30 +1,58 @@
 import React, { useEffect, useState } from "react";
-import objData from "../utils/mockData";
 import CardContainer from "./CardContainer";
 import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
-  const[filteredRestaurant , setFilteredRestaurant] = useState([]);
-  const [searchText,setsearchText] = useState("");
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchText, setsearchText] = useState("");
 
-  useEffect(()=>{
+  const status = useOnlineStatus();
+
+  useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
-  const fetchData= async()=> {
-   const data = await fetch(SWIGGY_API);
-   const json = await data.json();
-   setlistOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-   setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+  useEffect(() => {
+    if (listOfRestaurants.length === 0) {
+      return; // Avoid calling the following logic if listOfRestaurants is empty
+    }
+
+    // Your other conditional logic based on the online status
+    if (status === false) {
+      console.log("No internet connection");
+      return;
+    }
+
+    // Additional logic can be added based on the online status
+
+  }, [listOfRestaurants, status]);
+
+  const fetchData = async () => {
+    try {
+      const data = await fetch(SWIGGY_API);
+      const json = await data.json();
+      setlistOfRestaurants(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+      setFilteredRestaurant(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
   }
- if(listOfRestaurants.length === 0)
- {
-    // return <h1> LOADING .....</h1>
-    return <Shimmer/>
- }
+
+  if (status === false) {
+    return <h1>Oops!! Please check your internet connection...</h1>;
+  }
+
   return (
     <div className="body">
       <div className="filter">
