@@ -3,23 +3,13 @@ import { Link } from "react-router-dom";
 
 const CardContainer = (props) => {
   const { resData } = props;
-
+ const{cloudinaryImageId,name,avgRating,cuisines} = resData?.info;
   return (
-    <div className="eee">
-      {resData.slice(0, 15).map((res, index) => (
-        <Link to={`/restaurants/${res.info.id}`} key={index} className="card">
-          <div>
-            <img
-              className="card-img"
-              src={CDN_LINK + res.info.cloudinaryImageId}
-              alt={res.info.name}
-            />
-          </div>
-          <h2>{res.info.name}</h2>
-          <h4>{res.info.cuisines.join(", ")}</h4>
-          <h4>Rating - {res.info.avgRating}</h4>
-        </Link>
-      ))}
+    <div className="m-4 w-52 h-72 bg-gray-300 border border-solid border-black hover:shadow-xl rounded-sm">
+      <img className="w-60 h-40 rounded-sm" src={CDN_LINK + cloudinaryImageId}/>
+       <h2 className="font-bold text-lg">{name}</h2>
+       <h3>{cuisines.join(", ")}</h3>
+       <h4>{avgRating}</h4>
     </div>
   );
 };

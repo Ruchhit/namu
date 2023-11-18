@@ -3,6 +3,7 @@ import CardContainer from "./CardContainer";
 import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
@@ -55,9 +56,19 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="filter">
-        <button
-          className="btn"
+      <div className="flex">
+        <div className="m-2 px-4 ">
+            <input className="border border-solid border-black py-0" type="text" value={searchText} onChange={(e)=>{
+                setsearchText(e.target.value);
+            }}/>
+            <button className="m-2 px-2 py-0 bg-lime-400 rounded-lg shadow-md" onClick={()=>{
+                const filteredRes = listOfRestaurants.filter((res)=>
+                    res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                )
+                setFilteredRestaurant(filteredRes);
+            }}>search</button>
+             <button
+          className="m-2 px-2 py-0 bg-lime-400 rounded-lg shadow-md"
           onClick={() => {
             const filteredData = listOfRestaurants.filter(
               (res) => res.info.avgRating > 4
@@ -67,21 +78,14 @@ const Body = () => {
         >
           Filter Top Rated restaurants!!
         </button>
-        <div className="search">
-            <input type="text" value={searchText} onChange={(e)=>{
-                setsearchText(e.target.value);
-            }}/>
-            <button className="search-btn" onClick={()=>{
-                const filteredRes = listOfRestaurants.filter((res)=>
-                    res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                )
-                setFilteredRestaurant(filteredRes);
-            }}>search</button>
-        </div>
+        </div>   
       </div>
-      <div className="res-container">
-        {/* Assuming CardContainer accepts the list of restaurants as props */}
-        <CardContainer resData={filteredRestaurant} />
+      <div className="flex flex-wrap">
+        {filteredRestaurant.map((restaurant)=>(
+          <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}>
+            <CardContainer resData = {restaurant}/>
+          </Link>
+        ))}
       </div>
     </div>
   );
