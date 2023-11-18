@@ -1,4 +1,4 @@
-import React from "react";
+import React,{lazy,Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider ,Outlet } from "react-router-dom";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
+import Shimmer from "./Components/Shimmer";
 
 // food ordering app
 
@@ -20,6 +21,8 @@ const AppLayout = () => {
     </div>
   );
 };
+
+const Grocery = lazy(()=> import('./Components/Grocery'));
 
 const appRouter = createBrowserRouter([
   {
@@ -38,6 +41,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>,
+      },
+      {
+        path: "/grocery",
+        element: <Suspense fallback={<Shimmer/>}><Grocery/></Suspense>
       },
       {
         path : "/restaurants/:resId",
