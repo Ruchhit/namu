@@ -1,4 +1,4 @@
-import React,{lazy,Suspense} from "react";
+import React,{lazy,Suspense, useEffect, useState} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
@@ -9,16 +9,28 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import Shimmer from "./Components/Shimmer";
-
+import userContext from "./utils/userContext";
 // food ordering app
 
 const AppLayout = () => {
+   const[userName,setUserName] = useState();
+   useEffect(()=>{
+    // suppose we make an api call and extracted useer name
+    const data={
+      name:'Ruchit',
+    };
+    setUserName(data.name);
+   },[]);
+
   return (
-    <div className="app">
+    <userContext.Provider value={{loggedInUser : userName}}>
+      <div className="app">
       <Header />
-       <Outlet/>
+      <Outlet/>
       <Footer />
     </div>
+    </userContext.Provider>
+     
   );
 };
 
