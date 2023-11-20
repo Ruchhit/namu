@@ -1,28 +1,45 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import Shimmer from "./Shimmer";
-const RestaurantMenu = () => {
+import { CDN_LINK } from "../utils/constants";
+import RestaurantCategory from "./RestaurantCategory";
 
+const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
-  if(resInfo === null)
-  {
-    <Shimmer/>;
+
+  if (resInfo === null) {
+    return <Shimmer />;
   }
+
+  const name = resInfo?.name;
+  const avgRating = resInfo?.avgRating;
+  const costForTwoMessage = resInfo?.costForTwoMessage;
+  const cloudinaryImageId = resInfo?.cloudinaryImageId;
+  const categories = resInfo?.categories;
+
   return (
     <>
       {resInfo ? (
-        <div className="menu">
-        <h1>MENU</h1>
-          {resInfo && resInfo.map((items) => {
-              return (
-                <div key={items.card.info.name}>
-                  <ul>
-                    <li>{items.card.info.name} - {"RS."}{items.card.info.price /100}</li>
-                  </ul>
-                </div>
-              );
-            })}
+        <div>
+          <div className="bg-slate-300 mx-80 py-2 px-4 flex justify-between">
+            <div>
+              <h1 className="font-bold text-2xl">{name}</h1>
+              <h2 className="">{costForTwoMessage}</h2>
+              <h2 className="">{avgRating}</h2>
+            </div>
+            <img
+              className="w-36"
+              src={CDN_LINK + cloudinaryImageId}
+              alt={name}
+            />
+            </div>
+            <div className="bg-slate-300 mx-80 py-2 px-4">
+              {categories.map((category, index) => (
+                <RestaurantCategory key={index} data={category?.card?.card} />
+              ))}
+            </div>
+           
         </div>
       ) : (
         <h1>LOADING....</h1>
@@ -30,4 +47,5 @@ const RestaurantMenu = () => {
     </>
   );
 };
+
 export default RestaurantMenu;

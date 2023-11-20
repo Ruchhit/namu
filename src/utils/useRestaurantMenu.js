@@ -12,11 +12,25 @@ const useRestaurantMenu = (resId) => {
     try {
       const response = await fetch(MENU_API + resId);
       const json1 = await response.json();
-      setResInfo(
-        json1.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-          ?.card.itemCards || []
+    
+      console.log(json1.data.cards[0].card.card || [])
+      console.log(json1.data.cards[0]?.card?.card?.info.name);
+      const {name,avgRating,costForTwoMessage,cloudinaryImageId}= json1.data?.cards[0]?.card?.card?.info;
+
+      //gtting only item category data for accordion
+      console.log(json1.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+      const categories = json1.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((c)=>
+        c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       );
-      console.log(resInfo, "resInfo");
+      console.log(categories);
+      const combinedData={
+        name,
+        avgRating,
+        costForTwoMessage,
+        cloudinaryImageId,
+        categories,
+      }
+      setResInfo( combinedData);
     } catch (error) {
       console.error("Error fetching menu items:", error);
     }

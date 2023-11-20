@@ -10,6 +10,8 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setsearchText] = useState("");
 
+  console.log(listOfRestaurants)
+
   const status = useOnlineStatus();
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const Body = () => {
   if (status === false) {
     return <h1>Oops!! Please check your internet connection...</h1>;
   }
-
+console.log(listOfRestaurants)
   return (
     <div className="body">
       <div className="flex">
