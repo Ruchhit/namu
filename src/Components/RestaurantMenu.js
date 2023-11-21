@@ -24,13 +24,13 @@ const RestaurantMenu = () => {
     <>
       {resInfo ? (
         <div>
-          <div className="bg-slate-300 mx-80 py-2 px-4 flex justify-between">
+          <div className="bg-slate-300 mx-80 py-2 px-8 flex justify-between">
             <div>
               <h1 className="font-bold text-2xl">{name}</h1>
               <h2 className="">{costForTwoMessage}</h2>
-              <h2 className="">{avgRating}</h2>
+              <h2 className="">{avgRating}⭐</h2>
             </div>
-            <img className="w-36" src={CDN_LINK + cloudinaryImageId} alt={name} />
+            <img className="rounded-lg w-38 shadow-xl shadow-black" src={CDN_LINK + cloudinaryImageId} alt={name} />
           </div>
           <div className="bg-slate-300 mx-80 py-2 px-4">
             {/* Controlled Component */}

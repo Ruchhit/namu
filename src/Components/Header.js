@@ -3,11 +3,16 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from "react-redux";
 
 const Header = ()=>{
     const[btnReact,setbtnReact]=useState('login');
     const status = useOnlineStatus();
 
+    const cartItems = useSelector((store)=>store.cart.items);
+    
     const {loggedInUser} = useContext(userContext);
     return(
         <div className= 'flex justify-between bg-amber-100 shadow-lg'>
@@ -21,6 +26,7 @@ const Header = ()=>{
                     <li className="px-4"><Link to={'/about'}> About us</Link></li>
                     <li className="px-4"><Link to={'/contact'}> Contact us</Link></li>
                     <li className="px-4"><Link to ={'/grocery'}> Grocery </Link></li>
+                    <li className="px-4"><Link to ={'/cart'}><FontAwesomeIcon icon={faShoppingCart} />({cartItems.length}) </Link></li>
                     <button className="btn" onClick={()=>
                      btnReact === 'login' ? setbtnReact('logout') : setbtnReact('login')
                     }> {btnReact} </button>
